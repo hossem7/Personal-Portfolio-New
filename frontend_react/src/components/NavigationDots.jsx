@@ -6,13 +6,13 @@ const NavigationDots = ({ active }) => {
           {['home', 'about', 'projects', 'skills and experiences', 'contact'].map((item, index) => (
               <a 
                 href={`#${item}`}
-                key={item +index}
+                key={item + index}
                 className="app__navigation-dot" 
-                style={active == item ? { backgroundColor: '#313BAC' } : { }}
+                style={active === item ? { backgroundColor: '#313BAC' } : {}}
               />
           ))}
     </div>
   )
 }
 
-export default NavigationDots
+export default NavigationDots;
