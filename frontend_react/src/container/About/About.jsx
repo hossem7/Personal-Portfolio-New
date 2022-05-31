@@ -7,12 +7,17 @@ import { urlFor , client } from '../../client';
 
 const About = () => {
   const [abouts, setAbouts] = useState([]);
+  const [bio, setBio] = useState([]);
 
   useEffect(() => {
     const query = '*[_type == "abouts"]';
+    const bioQuery = '*[_type == "bio"]';
 
     client.fetch(query).then((data) => {
       setAbouts(data);
+    });
+    client.fetch(bioQuery).then((data) => {
+      setBio(data);
     });
   }, []);
   
@@ -32,10 +37,9 @@ const About = () => {
             <div>
               <br />
               <h2 className="head-text">About Me</h2>
-              <p className="p-text-about">Hi! I am a passionate programmer who enjoys experimenting with new technologies. Currently I am pursuing a Bachelors in Electrical Engineering and Management at McMaster University. Through my academics, I have garnered strong foundation in object-oriented programming, databases, embedded systems and machine learning in Python, Java, C and C++. I have a clear vision: To break into the realm of software development.
-              <br />
-              <br />
-              Besides my academics, I have expanded my knowledge into the world of full-stack development. For Instance, I used Next JS and React Styled Components to design this personal portfolio website. Check out my projects and technologies section to learn more about my skills in more detail.</p>
+              {bio.map((MyBio) => (
+                  <p className="p-text-about">{MyBio.bio}</p>
+              ))}
             </div>
           </div>
         </div>

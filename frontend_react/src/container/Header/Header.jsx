@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 import { AppWrap } from '../../wrapper';
 import { images } from '../../constants';
 import './Header.scss';
+import { client } from '../../client';
 
 const scaleVariants = {
   whileInView: {
@@ -17,6 +18,16 @@ const scaleVariants = {
 };
 
 const Header = () => {
+  const [header, setHeader] = useState([]);
+
+  useEffect(() => {
+    const query = '*[_type == "header"]';
+
+    client.fetch(query).then((data) => {
+      setHeader(data);
+    });
+  }, []);
+  
   return (
     <div className="app__header app__flex">
       <motion.div
@@ -32,10 +43,11 @@ const Header = () => {
               <h1 className="head-text">Mohammad</h1>
             </div>
           </div>
-
-          <div className="tag-cmp app__flex">
-            <p className="p-text">SWE Intern at Bentley Systems</p>
-          </div>
+          {header.map((head) => (
+            <div className="tag-cmp app__flex">
+              <p className="p-text">{head.header}</p>
+            </div>
+          ))}
         </div>
       </motion.div>
 
