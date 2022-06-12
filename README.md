@@ -4,4 +4,4 @@ New and updated Personal Portfolio higlighting my career so far and things I've 
 
 I used Sanity CMS to manage the content of the website.
 
-Live Deployment: https://www.mthossein.me/
+Live Deployment: https://www.mthossein.me/ 
